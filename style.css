@@ -3743,3 +3743,338 @@ img { max-width: 100%; }
         padding: 4px;
     }
 }
+/* ================================
+   CALCULATOR PAGE STYLES
+   ================================ */
+.calc-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: 24px;
+        margin-bottom: 24px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+    
+    .calc-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .component-section {
+        background: #151e2f;
+        border-radius: var(--radius-lg);
+        padding: 16px;
+        margin-top: 14px;
+        border: 1px solid var(--border);
+    }
+
+    .component-title {
+        margin: 0 0 12px 0;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--dark);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .marks-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+    }
+
+    .marks-table th {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--gray);
+        text-align: left;
+        padding-bottom: 6px;
+    }
+
+    .marks-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 8px;
+        animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .input-compact {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        font-size: 12px;
+        background: var(--white);
+        color: var(--dark);
+        transition: var(--transition);
+        width: 80px;
+    }
+
+    .input-title {
+        width: 100%;
+        min-width: 100px;
+    }
+
+    .input-compact:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .btn-add-row {
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transition: var(--transition);
+    }
+
+    .btn-add-row:hover {
+        background: var(--primary-light);
+    }
+
+    .btn-remove-row {
+        background: none;
+        border: none;
+        color: var(--danger);
+        cursor: pointer;
+        font-size: 12px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        transition: var(--transition);
+    }
+
+    .btn-remove-row:hover {
+        background: rgba(239, 68, 68, 0.1);
+    }
+
+    .badge-grade {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .grade-a { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
+    .grade-b { background: rgba(59, 130, 246, 0.18); color: #93c5fd; }
+    .grade-c { background: rgba(245, 158, 11, 0.18); color: #fcd34d; }
+    .grade-d { background: rgba(139, 92, 246, 0.18); color: #c4b5fd; }
+    .grade-f { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+
+    .calc-header-bg {
+        background: linear-gradient(135deg, #0F172A, #1E293B);
+    }
+
+    .sgpa-container {
+        position: sticky;
+        bottom: 20px;
+        z-index: 10;
+        background: rgba(15, 23, 42, 0.94);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border);
+        box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1), var(--shadow-lg);
+        border-radius: var(--radius-xl);
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 30px;
+        animation: slideUp 0.4s ease;
+    }
+
+    .radial-progress-wrapper {
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+
+    .btn-remove-course {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--danger);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        z-index: 5;
+    }
+
+    .btn-remove-course:hover {
+        background: var(--danger);
+        color: white;
+        transform: rotate(90deg);
+    }
+
+    .rule-card {
+        background: rgba(99, 102, 241, 0.1);
+        border-left: 4px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    :root {
+        color-scheme: dark;
+        --white: #1e293b;
+        --light-gray: #172033;
+        --border: #334155;
+        --radius-xl: 16px;
+        --radius-lg: 12px;
+        --radius: 8px;
+        --shadow: 0 4px 12px rgba(15, 23, 42, .08);
+        --shadow-lg: 0 12px 24px rgba(15, 23, 42, .12);
+        --dark: #e2e8f0;
+        --gray: #94a3b8;
+        --primary: #818cf8;
+        --primary-light: rgba(129, 140, 248, .18);
+        --danger: #f87171;
+        --success: #34d399;
+        --transition: all .2s ease;
+        --bg: #0b1120;
+    }
+    body { margin: 0; padding: 24px; background: var(--bg); color: var(--dark); font-family: Arial, sans-serif; }
+    .page-container { max-width: 1100px; margin: 0 auto; }
+    .page-header { color: white; border-radius: var(--radius-xl); padding: 24px; margin-bottom: 24px; }
+    .page-header h1 { margin: 0 0 8px; }
+    .page-header p { margin: 0; opacity: .8; }
+    .btn-primary, .btn-outline { border-radius: 8px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+    .btn-primary { background: var(--primary); color: white; border: 0; }
+    .btn-outline { color: var(--dark); background: var(--white); border: 1px solid var(--border); }
+    input, select, textarea {
+        color-scheme: dark;
+        background-color: #172033 !important;
+        border-color: #475569 !important;
+        color: #f1f5f9 !important;
+    }
+    select option { background-color: #1e293b; color: #f1f5f9; }
+    input::placeholder, textarea::placeholder { color: #a8b4c7 !important; opacity: 1; }
+    .storage-status { font-size: 12px; color: var(--gray); margin: 8px 0; }
+    .calculator-nav {
+        display: flex;
+        gap: 8px;
+        margin: 0 0 20px;
+        padding: 8px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        background: var(--white);
+        box-shadow: var(--shadow);
+    }
+    .calculator-tab {
+        flex: 1;
+        min-height: 44px;
+        border: 0;
+        border-radius: var(--radius);
+        background: transparent;
+        color: var(--gray);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .calculator-tab:hover, .calculator-tab.active {
+        background: var(--primary);
+        color: #fff;
+    }
+    .calculator-view[hidden] { display: none; }
+    .calculator-panel {
+        padding: 24px;
+        margin-bottom: 24px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        background: var(--white);
+        box-shadow: var(--shadow);
+    }
+    .calculator-panel h2 { margin: 0 0 8px; color: var(--dark); }
+    .calculator-description { margin: 0 0 20px; color: var(--gray); }
+    .gpa-course-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 1fr) minmax(170px, .8fr) minmax(120px, .5fr) 40px;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .gpa-course-row input, .gpa-course-row select, .cgpa-fields input {
+        width: 100%;
+        min-width: 0;
+        padding: 11px 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--light-gray);
+        color: var(--dark);
+        font: inherit;
+    }
+    .gpa-course-row input:focus, .gpa-course-row select:focus, .cgpa-fields input:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 1px;
+    }
+    .gpa-course-row .btn-remove-row { width: 40px; height: 40px; }
+    .calculator-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .calculator-result {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+    }
+    .result-metric {
+        padding: 16px;
+        border-radius: var(--radius);
+        background: var(--light-gray);
+    }
+    .result-metric span { display: block; color: var(--gray); font-size: 13px; }
+    .result-metric strong { display: block; margin-top: 4px; color: var(--primary); font-size: 22px; }
+    .cgpa-fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+    .cgpa-fields label { display: block; margin-bottom: 6px; color: var(--dark); font-weight: 600; }
+    .cgpa-error { min-height: 24px; margin: 14px 0 0; color: var(--danger); }
+    .formula-note { margin: 18px 0 0; color: var(--gray); font-size: 13px; }
+    @media (max-width: 640px) {
+        body { padding: 12px; }
+        .sgpa-container { padding: 16px; flex-wrap: wrap; gap: 12px; }
+        .rule-card { font-size: 12px; }
+        .calculator-nav { gap: 4px; padding: 5px; }
+        .calculator-tab { padding: 8px 4px; font-size: 12px; }
+        .gpa-course-row[aria-hidden="true"] { display: none; }
+        .gpa-course-row { grid-template-columns: minmax(0, 1fr) 40px; }
+        .gpa-course-row .course-name-input { grid-column: 1; }
+        .gpa-course-row .grade-input { grid-column: 1; }
+        .gpa-course-row .credit-input { grid-column: 1; }
+        .gpa-course-row .btn-remove-row { grid-column: 2; grid-row: 1 / span 3; }
+        .calculator-panel { padding: 18px; }
+        .calculator-result { grid-template-columns: 1fr; }
+        .cgpa-fields { grid-template-columns: 1fr; }
+    }
