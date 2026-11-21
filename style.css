@@ -3899,20 +3899,32 @@ img { max-width: 100%; }
     }
 
     .sgpa-container {
-        position: sticky;
-        bottom: 20px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
         z-index: 10;
         background: rgba(15, 23, 42, 0.94);
         backdrop-filter: blur(12px);
         border: 1px solid var(--border);
         box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1), var(--shadow-lg);
-        border-radius: var(--radius-xl);
+        border-radius: 0;
         padding: 20px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 30px;
         animation: slideUp 0.4s ease;
+        box-sizing: border-box;
+    }
+
+    body {
+        padding-bottom: 150px !important;
+    }
+
+    input[aria-invalid="true"] {
+        border: 2px solid var(--danger) !important;
+        outline: 2px solid rgba(248, 113, 113, 0.25);
     }
 
     .radial-progress-wrapper {
@@ -4073,7 +4085,7 @@ img { max-width: 100%; }
     .cgpa-error { min-height: 24px; margin: 14px 0 0; color: var(--danger); }
     .formula-note { margin: 18px 0 0; color: var(--gray); font-size: 13px; }
     @media (max-width: 640px) {
-        body { padding: 12px; }
+        body { padding: 12px 12px 150px !important; }
         .sgpa-container { padding: 16px; flex-wrap: wrap; gap: 12px; }
         .rule-card { font-size: 12px; }
         .calculator-nav { gap: 4px; padding: 5px; }

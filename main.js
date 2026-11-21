@@ -318,7 +318,28 @@ let courseCount = 0;
         calculateCard(id);
     }
 
-    // Helper to extract obtained/total marks and calculate contribution
+    // Helper to validate obtained/total marks and calculate weighted contributions
+    function validateObtainedTotal(obtInput, totInput) {
+        const obt = parseFloat(obtInput.value);
+        const tot = parseFloat(totInput.value);
+        const hasObt = Number.isFinite(obt);
+        const hasTot = Number.isFinite(tot);
+
+        obtInput.setCustomValidity("");
+        obtInput.removeAttribute("aria-invalid");
+        obtInput.removeAttribute("title");
+
+        if (hasObt && hasTot && obt > tot) {
+            const message = "Obtained marks cannot be more than total marks.";
+            obtInput.setCustomValidity(message);
+            obtInput.setAttribute("aria-invalid", "true");
+            obtInput.title = message;
+            return false;
+        }
+
+        return true;
+    }
+
     function getWeightedAggregate(rowsId) {
         const container = document.getElementById(rowsId);
         if (!container) return { obtained: 0, total: 0, percent: 0 };
@@ -326,16 +347,20 @@ let courseCount = 0;
         const rows = container.querySelectorAll(".marks-row");
         let totalObt = 0;
         let totalTot = 0;
-        let activeRowsCount = 0;
 
         rows.forEach(row => {
-            const obtVal = parseFloat(row.querySelector(".mark-obt").value);
-            const totVal = parseFloat(row.querySelector(".mark-tot").value);
+            const obtInput = row.querySelector(".mark-obt");
+            const totInput = row.querySelector(".mark-tot");
+            const obtVal = parseFloat(obtInput.value);
+            const totVal = parseFloat(totInput.value);
+            const validMarks = validateObtainedTotal(obtInput, totInput);
 
-            if (!isNaN(obtVal) && !isNaN(totVal) && totVal > 0) {
-                totalObt += Math.min(obtVal, totVal); // prevent obtained exceeding total
-                totalTot += totVal;
-                activeRowsCount++;
+            const obt = Number.isFinite(obtVal) ? Math.max(0, obtVal) : 0;
+            const tot = Number.isFinite(totVal) ? Math.max(0, totVal) : 0;
+
+            if (validMarks && tot > 0) {
+                totalObt += obt;
+                totalTot += tot;
             }
         });
 
@@ -346,8 +371,12 @@ let courseCount = 0;
     function getExamValue(obtInput, totInput) {
         const obt = parseFloat(obtInput.value);
         const tot = parseFloat(totInput.value);
-        if (isNaN(obt) || isNaN(tot) || tot <= 0) return 0;
-        return (Math.min(obt, tot) / tot) * 100;
+        if (!validateObtainedTotal(obtInput, totInput)) return 0;
+
+        const obtained = Number.isFinite(obt) ? Math.max(0, obt) : 0;
+        const total = Number.isFinite(tot) ? Math.max(0, tot) : 0;
+        if (total <= 0) return 0;
+        return (obtained / total) * 100;
     }
 
     function calculateCard(id) {
