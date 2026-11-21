@@ -262,14 +262,14 @@ let courseCount = 0;
         
         // Dynamic placeholders matching typical marks in CUOnline portal
         if (type === 'quizzes') {
-            placeholderObt = "e.g. 12";
-            placeholderTot = "15";
+            placeholderObt = "Obt";
+            placeholderTot = "Total";
         } else if (type === 'assignments') {
-            placeholderObt = "e.g. 15";
-            placeholderTot = "20";
+            placeholderObt = "Obt";
+            placeholderTot = "Total";
         } else {
-            placeholderObt = "e.g. 9";
-            placeholderTot = "10";
+            placeholderObt = "Obt";
+            placeholderTot = "Total";
         }
 
         row.innerHTML = `
@@ -277,9 +277,7 @@ let courseCount = 0;
             <input type="number" min="0" step="0.5" placeholder="${placeholderObt}" class="input-compact mark-obt" oninput="calculateCard(${courseId})">
             <span style="font-size: 11px; color: var(--gray);">/</span>
             <input type="number" min="0.1" step="0.5" placeholder="${placeholderTot}" class="input-compact mark-tot" oninput="calculateCard(${courseId})">
-            <button type="button" class="btn-remove-row" onclick="removeMarkRow(${courseId}, '${type}', '${index}')" title="Remove Row">
-                <i class="fas fa-trash-alt"></i>
-            </button>
+            <button type="button" class="btn-remove-row" onclick="removeMarkRow(${courseId}, '${type}', '${index}')" title="Remove row" aria-label="Remove row">×</button>
         `;
 
         container.appendChild(row);
@@ -459,12 +457,12 @@ let courseCount = 0;
             if (finalPct >= 85) { gp = 4.0; grade = "A"; gradeClass = "grade-a"; }
             else if (finalPct >= 80) { gp = 3.66; grade = "A-"; gradeClass = "grade-a"; }
             else if (finalPct >= 75) { gp = 3.33; grade = "B+"; gradeClass = "grade-b"; }
-            else if (finalPct >= 70) { gp = 3.0; grade = "B"; gradeClass = "grade-b"; }
-            else if (finalPct >= 65) { gp = 2.66; grade = "B-"; gradeClass = "grade-b"; }
-            else if (finalPct >= 61) { gp = 2.33; grade = "C+"; gradeClass = "grade-c"; }
-            else if (finalPct >= 58) { gp = 2.0; grade = "C"; gradeClass = "grade-c"; }
-            else if (finalPct >= 55) { gp = 1.66; grade = "C-"; gradeClass = "grade-c"; }
-            else if (finalPct >= 52) { gp = 1.33; grade = "D+"; gradeClass = "grade-d"; }
+            else if (finalPct >= 71) { gp = 3.0; grade = "B"; gradeClass = "grade-b"; }
+            else if (finalPct >= 68) { gp = 2.66; grade = "B-"; gradeClass = "grade-b"; }
+            else if (finalPct >= 64) { gp = 2.33; grade = "C+"; gradeClass = "grade-c"; }
+            else if (finalPct >= 61) { gp = 2.0; grade = "C"; gradeClass = "grade-c"; }
+            else if (finalPct >= 58) { gp = 1.66; grade = "C-"; gradeClass = "grade-c"; }
+            else if (finalPct >= 54) { gp = 1.33; grade = "D+"; gradeClass = "grade-d"; }
             else if (finalPct >= 50) { gp = 1.0; grade = "D"; gradeClass = "grade-d"; }
             else { gp = 0.0; grade = "F"; gradeClass = "grade-f"; }
         }
@@ -598,7 +596,7 @@ let courseCount = 0;
                 ${comsatsGrades.map(([grade, points]) => `<option value="${points.toFixed(2)}">${grade} (${points.toFixed(2)})</option>`).join("")}
             </select>
             <input class="credit-input" type="number" min="0.5" max="12" step="0.5" inputmode="decimal" placeholder="Credit hours (e.g. 3)" aria-label="Credit hours">
-            <button type="button" class="btn-remove-row" aria-label="Remove course" title="Remove course"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn-remove-row" aria-label="Remove course row" title="Remove course row">×</button>
         `;
         row.querySelector(".course-name-input").value = course.name || "";
         row.querySelector(".grade-input").value = course.grade || "";
